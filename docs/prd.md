@@ -7,7 +7,7 @@ Existe uma lacuna no mercado para o gerenciamento integrado da alimentação dom
 Brasileiros que cozinham em casa e buscam adotar uma rotina alimentar mais saudável e sustentável, mas que esbarram na falta de criatividade, organização ou tempo. O público inclui **pessoas com necessidades dietéticas específicas (ex: intolerância à lactose, dietas de baixo açúcar) que precisam de praticidade e inteligência no preparo diário das refeições**.
 
 ## 1.3 Objetivo
-Desenvolver o **FazAI**, uma solução digital multiplataforma (app mobile e plataforma web) que conecta os ingredientes disponíveis na despensa do usuário às melhores opções de receitas personalizadas. O objetivo central é **simplificar o preparo de refeições e o acompanhamento nutricional por meio de tecnologias de visão computacional** (identificando alimentos e refeições por fotos ou entrada de texto), promovendo hábitos alimentares mais saudáveis e reduzindo ativamente o desperdício de alimentos.
+Desenvolver o **FazAI**, uma solução digital multiplataforma (app mobile e plataforma web) que conecta os ingredientes disponíveis na despensa do usuário às melhores opções de receitas personalizadas]. O objetivo central é **simplificar o preparo de refeições e o acompanhamento nutricional por meio de Processamento de Linguagem Natural e Inteligência Artificial Generativa**, permitindo a entrada flexível de texto livre para inventário e cálculo de macronutrientes, promovendo hábitos alimentares mais saudáveis e reduzindo o desperdício.
 
 ***
 
@@ -15,16 +15,16 @@ Desenvolver o **FazAI**, uma solução digital multiplataforma (app mobile e pla
 
 ## Descrição do produto
 
-**Problema:** O alto índice de desperdício de alimentos doméstico, aliado à frustração gerada por aplicativos de nutrição que exigem registros manuais constantes e sites de receitas que não consideram o que o usuário tem na despensa nem suas restrições dietéticas.
+**Problema:** O alto índice de desperdício de alimentos doméstico, aliado à frustração gerada por aplicativos de nutrição que exigem registros manuais complexos e sites de receitas que ignoram o que o usuário tem na despensa e suas restrições dietéticas.
 
-**Solução:** O **FazAI** é um ecossistema digital completo (app mobile e web) que utiliza tecnologias de visão computacional para identificar ingredientes via foto ou entrada manual de texto. O sistema sugere receitas personalizadas focadas no aproveitamento total da despensa e automatiza o acompanhamento nutricional de macronutrientes e calorias a partir de fotos dos pratos prontos.
+**Solução:** O **FazAI** é um ecossistema digital completo (app mobile e web) que utiliza Inteligência Artificial para interpretar listas de ingredientes digitadas livremente pelo usuário. O sistema sugere receitas personalizadas focadas no aproveitamento da despensa e automatiza o cálculo de macronutrientes e calorias de forma fluida.
 
-Para o **público que cozinha em casa e possui metas ou restrições nutricionais**, os **ganhos** incluem a redução imediata do desperdício de alimentos, economia financeira, praticidade extrema ao eliminar o atrito do registro manual e o suporte efetivo a dietas personalizadas (ex: zero lactose, baixo açúcar, sem glúten).
+Para o **público que cozinha em casa e possui metas ou restrições nutricionais**, os **ganhos** incluem a redução do desperdício, economia financeira, praticidade extrema ao eliminar o atrito do registro tradicional e o suporte efetivo a dietas personalizadas (ex: zero lactose, baixo açúcar, sem glúten).
 
 **Nossos Diferenciais:**
-- Visão computacional integrada para reconhecimento de alimentos tanto na despensa quanto no prato pronto.
-- Cruzamento inteligente de dados: une o que o usuário tem na geladeira com suas restrições nutricionais e metas.
-- Solução única com suporte a PWA (Progressive Web App), oferecendo a experiência de um aplicativo móvel nativo e acessibilidade web a partir de uma única base de código.
+- **Input Inteligente em Texto Livre:** A IA interpreta o que o usuário digitou naturalmente (ex: "3 ovos e um punhado de espinafre") e estrutura o inventário sem tabelas complexas.
+- **Geração Dinâmica de Receitas:** Diferente de bancos de dados estáticos, a IA cria a receita ideal combinando exatamente os ingredientes do usuário com suas restrições.
+- **Solução Única com PWA (Progressive Web App):** Experiência de aplicativo móvel nativo e acessibilidade web a partir de uma única base de código.
 
 ---
 
@@ -32,70 +32,70 @@ Para o **público que cozinha em casa e possui metas ou restrições nutricionai
 
 ### Cozinheiro Prático e Consciente
 
-- **Problemas:** Desperdiça comida com frequência por falta de planejamento e criatividade; não encontra receitas que usem os itens disponíveis na geladeira; abandona dietas pelo cansaço de preencher apps de nutrição manualmente.
-- **Objetivos:** Ter uma rotina alimentar saudável e sustentável; aproveitar ao máximo os ingredientes que possui; bater metas nutricionais sem perder tempo.
-- **Dados demográficos:** Adultos que cozinham no dia a dia e buscam saúde ou possuem restrições como intolerância à lactose/glúten.
-- **Motivações:** Economizar dinheiro, manter a saúde, adotar um estilo de vida prático e diminuir o desperdício alimentar.
-- **Frustrações:** Abrir a geladeira e não saber o que cozinhar; usar aplicativos fragmentados e não integrados que resolvem apenas parte do problema.
+- **Problemas:** Desperdiça comida por falta de planejamento; não encontra receitas que usem os itens da geladeira; abandona dietas pelo cansaço de preencher apps tradicionais.
+- **Objetivos:** Ter uma rotina alimentar saudável e sustentável; aproveitar os ingredientes que possui; bater metas nutricionais sem perder tempo.
+- **Dados demográficos:** Adultos que cozinham no dia a dia e possuem restrições alimentares ou metas de saúde.
+- **Motivações:** Economizar dinheiro, manter a saúde e diminuir o desperdício alimentar.
+- **Frustrações:** Abrir a geladeira e não saber o que cozinhar; usar aplicativos fragmentados que exigem inputs exaustivos.
 
 ---
 
 ## Principais Funcionalidades
 
-### RFN-01 Escaneamento e Inventário de Ingredientes
-- O usuário poderá utilizar a câmera para tirar fotos dos ingredientes, e a tecnologia de visão computacional identificará os itens. O usuário também poderá fazer a entrada manual via texto.
+### RFN-01 Entrada Inteligente e Inventário de Ingredientes
+- O usuário poderá digitar livremente os ingredientes e quantidades que possui em casa. O sistema usará IA para interpretar o texto e atualizar o inventário.
 - **Critérios de Aceitação:** 
-  - O sistema deve criar e manter um inventário atualizado associado ao perfil do usuário.
-  - O usuário deve poder editar ou excluir itens caso a identificação falhe.
+  - O sistema deve extrair com sucesso os ingredientes e quantidades de um texto livre.
+  - O usuário deve poder editar ou excluir manualmente os itens gerados caso a interpretação falhe.
 
-### RFN-02 Match Inteligente de Receitas Personalizadas
-- O sistema cruzará os ingredientes detectados com as restrições alimentares (ex: sem glúten, sem lactose) e preferências do usuário para sugerir pratos.
+### RFN-02 Geração de Receitas Personalizadas via IA
+- O sistema enviará os ingredientes do inventário e as restrições do usuário para a IA, que gerará uma receita personalizada passo a passo.
 - **Critérios de Aceitação:**
-  - As receitas devem priorizar o uso dos ingredientes que o usuário já possui.
-  - As sugestões devem obrigatoriamente respeitar as restrições de saúde cadastradas.
+  - As receitas geradas devem priorizar o uso dos ingredientes informados.
+  - As sugestões devem respeitar rigorosamente as restrições de saúde cadastradas.
 
-### RFN-03 Acompanhamento Nutricional por Imagem
-- O usuário poderá registrar suas refeições diárias (via foto ou texto) para que o sistema contabilize as calorias, macronutrientes e adequação às metas.
+### RFN-03 Cálculo Automatizado de Macronutrientes e Calorias
+- O sistema exibirá os macronutrientes (carboidratos, proteínas, gorduras) e as calorias totais estimados para a receita gerada ou para os ingredientes informados.
 - **Critérios de Aceitação:**
-  - O app deve exibir o cálculo nutricional estimado da refeição com base na imagem processada.
-  - O usuário deve ter acesso a um histórico de consumo e gamificação.
+  - O app deve exibir o cálculo nutricional de forma clara na tela da receita.
+  - O usuário deve conseguir salvar a refeição para acumular no seu histórico diário.
 
 ---
 
 ## Requisitos Não Funcionais
 
 ### RNF-01 - Desempenho e Multiplataforma (PWA)
-A solução utilizará o **Next.js com suporte a PWA**, combinando a acessibilidade da web com os recursos e experiência de um aplicativo móvel nativo, evitando a necessidade de múltiplos repositórios.
+A solução utilizará o **Next.js com suporte a PWA**, combinando a acessibilidade da web com os recursos de um app móvel nativo, mantendo apenas um repositório.
 
 ### RNF-02 - Padrão Arquitetural SPA e Renderização
-A arquitetura do front-end seguirá o padrão **SPA (Single Page Application)**. Inicialmente, adotaremos a renderização **CSR (Client Side Rendering)** para garantir interações dinâmicas e fluidas. O Next.js permitirá uma transição facilitada para **SSR (Server Side Rendering)** no futuro, se necessário, graças à sua otimização híbrida.
+A arquitetura do front-end seguirá o padrão **SPA (Single Page Application)** com renderização **CSR (Client Side Rendering)** inicial para garantir interações fluidas.
 
 ### RNF-03 - Confiabilidade e Tipagem
-Todo o código será construído em **TypeScript**. A tipagem estática permitirá que o compilador identifique erros antes da execução, melhorando a manutenibilidade do código e blindando a aplicação contra erros comuns do JavaScript.
+Todo o código será construído em **TypeScript** para capturar erros antes da execução e melhorar a manutenibilidade.
 
 ### RNF-04 - Arquitetura Monolítica
-A aplicação seguirá o estilo arquitetural de **Monolito**, concentrando roteamento, lógica e UI em um único projeto. Isso acelera o fluxo de desenvolvimento para times pequenos, reduz a complexidade de deploy na operação e diminui custos de infraestrutura.
+A aplicação seguirá o estilo de **Monolito**, concentrando roteamento, lógica e UI em um único projeto para acelerar o desenvolvimento do time.
 
 ### RNF-05 - Padronização Visual e Estilização
-A interface será estilizada com **Tailwind CSS** em uma abordagem *mobile-first*. O uso de suas classes utilitárias garantirá um design system consistente, implementação rápida de responsividade e ótima performance no build com o Next.js.
+A interface será estilizada com **Tailwind CSS** seguindo a abordagem *mobile-first* para garantir consistência visual e excelente performance de build.
 
 ---
 
 ## Métricas de Sucesso
 
-- **Engajamento:** Redução da taxa de abandono do acompanhamento nutricional, medindo a retenção de usuários após a substituição do registro manual pelo fotográfico.
-- **Uso da IA:** Frequência de uso do reconhecimento por visão computacional versus entrada manual de texto.
-- **Sustentabilidade:** Estimativa de refeições preparadas a partir de ingredientes que seriam descartados, alimentando o sistema de gamificação.
+- **Engajamento:** Taxa de retenção semanal (WAU) dos usuários que utilizam a entrada de texto livre para registrar seus alimentos.
+- **Aderência às Receitas:** Percentual de receitas geradas pela IA que são marcadas como "Preparadas" ou "Favoritadas" pelo usuário.
+- **Economia Estimada:** Volume estimado de ingredientes reaproveitados através do app, exibido no painel do usuário.
 
 ---
 
 ## Premissas e restrições
 
-- **Premissas:** Os usuários possuem dispositivos móveis ou computadores com acesso à câmera e internet; A equipe desenvolvedora possui conhecimento para atuar com Next.js, TypeScript e Tailwind CSS.
-- **Restrições:** Para viabilizar a entrega com velocidade e estabilidade em estágios iniciais, o projeto utilizará uma arquitetura de Monolito, sem microsserviços.
+- **Premissas:** Os usuários possuem dispositivos com acesso à internet para se comunicar com os serviços de IA; A equipe possui conhecimento em Next.js, TypeScript e Tailwind CSS.
+- **Restrições:** O projeto utilizará serviços de IA em camadas gratuitas (ex: API do Gemini), o que pode impor limites de requisições por minuto (Rate Limiting).
 
 ## Escopo
 
-- **v1:** Criação da base Monolítica em Next.js/TypeScript/Tailwind, cadastro de usuários, entrada manual de ingredientes e renderização de receitas via CSR.
-- **v2:** Implementação do suporte a PWA para experiência mobile nativa e integração da visão computacional para escaneamento da despensa e geração automática de receitas personalizadas.
-- **v3:** Lançamento do acompanhamento nutricional por foto de pratos prontos, métricas de calorias/macronutrientes, histórico gamificado e eventual migração de rotas específicas para SSR visando otimização.
+- **v1:** Estrutura base Monolítica (Next.js/TypeScript), cadastro de perfil (metas/restrições), formulário de entrada manual simples de ingredientes, cálculo básico de macros e listagem estática de receitas locais.
+- **v2:** Integração com a API de IA para interpretação de texto livre (ingredientes), geração dinâmica de receitas personalizadas baseadas na despensa e ativação do suporte a PWA.
+- **v3:** Histórico nutricional diário consolidado, gráficos de consumo de macros/calorias e sistema de gamificação para redução de desperdício.

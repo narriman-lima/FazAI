@@ -15,7 +15,7 @@ O produto atende a **indivíduos que preparam suas próprias refeições em casa
 Esta persona valoriza a praticidade, busca otimizar o tempo na cozinha e o orçamento doméstico, mas sofre com a fadiga de decisão na hora de planejar o cardápio diário.
 
 ## 3. Objetivo
-Desenvolver o **FazAi**, uma solução inteligente que **elimine o atrito do planejamento alimentar e do controle de desperdício**. 
+Desenvolver o **FazAI**, uma solução inteligente que **elimine o atrito do planejamento alimentar e do controle de desperdício**. 
 
 O produto deve ser capaz de:
 * Conectar os ingredientes disponíveis na casa do usuário a sugestões de receitas personalizadas que respeitem rigorosamente suas restrições e metas de saúde.

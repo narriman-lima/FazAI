@@ -31,21 +31,21 @@ A solução adota uma arquitetura clássica de Cliente-Servidor distribuída e d
 * **Estilização**: Tailwind CSS - Framework utilitário mobile-first que elimina a escrita repetitiva de arquivos CSS e garante a aplicação de um design system limpo e consistente.
 
 ### Backend
-* **Linguagem**: C# (v12) - Aproveitando os recursos modernos da linguagem para desenvolvimento corporativo rápido e seguro.
-* **Runtime**: .NET 8 LTS - Plataforma de alto desempenho, multiplataforma e otimizada para nuvem.
-* **Framework**: ASP.NET Core Web API - Estrutura robusta para construção de serviços HTTP de alta performance.
-* **Persistência**: Microsoft SQL Server - Banco de dados relacional robusto para armazenamento estruturado de entidades.
+* **Linguagem**: C# (v12)
+* **Runtime**: .NET 8 LTS
+* **Framework**: ASP.NET Core Web API
+* **Persistência**: SQLite - Banco de dados relacional leve baseado em arquivo local, ideal para simplificação de infraestrutura e execução zero-configuração em ambiente acadêmico.
 * **ORM**: Entity Framework Core 8 (EF Core) - Mapeamento objeto-relacional utilizando a abordagem Code-First para migrações automatizadas e consultas seguras via LINQ.
 
 ### Stack de Desenvolvimento
 * **IDE**: Visual Studio 2022 ou Visual Studio Code.
 * **Gerenciamento de pacotes**: NuGet (para o ecossistema .NET) e npm ou yarn (para o ecossistema React).
-* **Ambiente de desenvolvimento local**: Docker Compose para orquestrar o container do SQL Server local sem necessidade de instalação nativa na máquina do desenvolvedor.
+* **Ambiente de desenvolvimento local**: Execução nativa local via CLI do .NET (`dotnet run`), utilizando o arquivo de banco de dados SQLite autogerado na raiz do projeto, dispensando containers de banco de dados para o desenvolvimento básico.
 * **Infraestrutura como Código (IaC)**: Scripts básicos de Dockerfile e Docker Compose para provisionamento ágil do ambiente de homologação.
 * **Pipeline CI/CD**: GitHub Actions configurado com workflows para build automático, checagem de tipos (TypeScript), compilação do .NET e execução de testes de unidade a cada Pull Request.
 
 ### Integrações
-* **Persistência**: Driver nativo do SQL Server (`Microsoft.EntityFrameworkCore.SqlServer`).
+* **Persistência**: Provedor oficial do SQLite para o Entity Framework Core (`Microsoft.EntityFrameworkCore.Sqlite`).
 * **Deployment**: Imagens base Docker oficiais (`mcr.microsoft.com/dotnet/aspnet` e `node:alpine`).
 * **Segurança (autenticação e autorização)**: Pacote `Microsoft.AspNetCore.Authentication.JwtBearer` para validação nativa de tokens no backend.
 * **Observabilidade**: Integração direta com provedores de IA gratuitos utilizando o SDK oficial do Google Gemini para C# (`Mscc.GenerativeAI` ou chamadas HTTP estruturadas usando `HttpClient` nativo para consumo do endpoint oficial do Gemini 1.5 Flash).
@@ -106,7 +106,7 @@ A API seguirá o padrão arquitetural REST com payloads estritamente em formato 
 ## Tenancy
 * **Estratégia**: O sistema operará no modelo **Single-Tenancy Arquitetural com Isolamento Lógico por Linha** (*Shared Database, Shared Process*). Como se trata de um aplicativo B2C voltado para o consumidor final, todos os usuários compartilham a mesma infraestrutura de servidores e tabelas de banco de dados.
 * **Isolamento**: O isolamento estrito dos dados dos usuários é garantido através da inclusão obrigatória da coluna chave estrangeira `UserId` (do tipo `UniqueIdentifier` ou `INT`) em todas as tabelas transacionais (`PantryItems`, `UserProfiles`, `SavedRecipes`).
-* **Migrações**: Gerenciadas centralizadamente via EF Core Migrations aplicadas sequencialmente no banco de dados centralizado em SQL Server durante a inicialização do container ou pipeline de deploy.
+* **Migrações**: Gerenciadas via EF Core Migrations aplicadas localmente por linha de comando (`dotnet ef database update`) ou programaticamente na inicialização da aplicação web, gerando e estruturando o arquivo local do SQLite de forma automatizada.
 
 ---
 

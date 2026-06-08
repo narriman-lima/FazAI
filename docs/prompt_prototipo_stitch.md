@@ -7,14 +7,14 @@ Este documento contém o prompt estruturado pronto para ser copiado e colado em 
 ### PROMPT PARA COPIAR E COLAR NO GOOGLE STITCH:
 
 ```text
-Atue como um Designer de UX/UI Sênior especialista em soluções móveis (Mobile-First) e PWAs. 
+Atue como um Designer de UX/UI Sênior especialista em Aplicações Web (Desktop). 
 
-Objetivo: Crie um conjunto de templates de protótipos altamente realistas, modernos e limpos para o aplicativo "FazAI", um ecossistema digital focado na redução do desperdício de alimentos domésticos e acompanhamento nutricional inteligente através de IA.
+Objetivo: Crie um conjunto de templates de protótipos em formato de aplicação web para desktop (proporção 16:9, visualização de navegador) para a plataforma "FazAI", um sistema focado na redução do desperdício de alimentos domésticos e acompanhamento nutricional inteligente através de IA.
 
 Diretrizes Visuais Gerais:
 - Estilo: Clean, minimalista, moderno, focado em alta legibilidade.
 - Cores: Fundo claro (off-white/cinza bem claro), textos principais escuros (chumbo/grafite), botões de ação primária em cores vivas de destaque (como um coral ou verde médio saudável). Alertas de erro em vermelho suave e acertos em verde.
-- Abordagem: Mobile-first (foco em tela de smartphone, proporção 9:19), sem barras de navegação poluídas.
+- Abordagem: Layout para Desktop (proporção 16:9, visualização de navegador), utilizando uma estrutura limpa com barra lateral (Sidebar) ou menu superior fixo de navegação, e contêiner centralizado widescreen (max-w-7xl).
 - REFEIÇÃO E FOTOS: Proibido incluir elementos de câmera, botões de "tirar foto", "escanear ingrediente" ou "smart scanner". Toda a entrada de dados do inventário deve ser textual.
 
 Gere os templates de interface estruturados para as seguintes 5 telas essenciais do fluxo:
@@ -32,10 +32,10 @@ Gere os templates de interface estruturados para as seguintes 5 telas essenciais
 - Botão largo na base: "Salvar Perfil e Configurações".
 
 3. Tela da Despensa Inteligente / Dashboard Principal (INT-003)
-- Esta é a tela central do app. Deve ter duas seções visuais limpas:
-  a) Uma área de texto livre (TextArea) de destaque com o placeholder: "O que você tem na geladeira/despensa hoje? (Ex: Tenho 3 ovos, espinafre e duas fatias de queijo)". Logo abaixo, um botão primário: "Processar Alimentos com IA".
-  b) Uma listagem dinâmica em formato de lista corrida ou chips com os ingredientes já interpretados e salvos (Ex: "• 3 Ovos", "• 1 Maço de Espinafre"), cada um com um pequeno ícone de lixeira vermelha ao lado para exclusão rápida.
-- Na base da tela, um botão flutuante ou fixo de destaque máximo: "Gerar Receitas Personalizadas" (ativo quando houver itens na lista).
+- Esta é a tela central do sistema. Deve utilizar um layout de Dashboard dividido em colunas assimétricas (Grid Desktop do Tailwind):
+  a) Coluna da Esquerda / Painel Central (Largura 2/3): Uma área de texto livre (TextArea) proeminente e larga com o placeholder: "O que você tem na geladeira/despensa hoje? (Ex: Tenho 3 ovos, espinafre e duas fatias de queijo)". Logo abaixo dela, o botão primário: "Processar Alimentos com IA".
+  b) Coluna da Direita (Largura 1/3): Um painel lateral que exibe a listagem estruturada de ingredientes interpretados em formato de cartões ou chips (Ex: "3 Ovos", "1 Maço de Espinafre"), cada um com um ícone visível de lixeira vermelha ao lado para exclusão pontual.
+- Em destaque na base do painel ou da página, o botão de ação principal do sistema: "Gerar Receitas Personalizadas".
 
 4. Tela de Exibição da Receita Gerada (INT-004)
 - Layout otimizado para modo leitura na cozinha, com ótimo espaçamento.

@@ -1,0 +1,63 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserProfile {
+  id                 String       @id @default(uuid())
+  userId             String       @unique
+  email              String       @unique
+  calorieGoal        Int?
+  healthRestrictions String[]
+  preferences        String[]
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  pantryItems        PantryItem[]
+  recipes            Recipe[]
+}
+
+model PantryItem {
+  id        String      @id @default(uuid())
+  userId    String
+  name      String
+  quantity  String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  user      UserProfile @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Recipe {
+  id          String      @id @default(uuid())
+  userId      String
+  title       String
+  description String
+  ingredients Json
+  instructions Json
+  macros      Json
+  createdAt   DateTime    @default(now())
+  user        UserProfile @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model SavedRecipe {
+  id            String   @id @default(uuid())
+  userId        String
+  title         String
+  calories      Int
+  carbohydrates String
+  proteins      String
+  fats          String
+  ingredients   String[]
+  steps         String[]
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+}

@@ -1,0 +1,53 @@
+schema: spec-driven
+
+# Directory mappings for specs and changes to align with the opencode workspace structure
+specsPath: opencode/openspec/specs
+changesPath: opencode/openspec/changes
+archivePath: opencode/openspec/changes/archive
+
+# Project context injected into all AI prompts
+context: |
+  You are an AI developer working on "FazAI", a web application aimed at reducing household food waste and providing nutritional guidance. The app interprets free-text lists of ingredients entered by the user, structures the inventory, and generates recipes with estimated macronutrients and calories, respecting profiles, goals, and health restrictions.
+
+  Tech Stack:
+  - Frontend: React (v18+, Single Page Application, Client-Side Rendering), TypeScript (v5+), Tailwind CSS
+  - Backend: Node.js (v18+) Serverless Functions on Vercel using Express or Fastify
+  - Persistence: PostgreSQL (Supabase) via Prisma ORM (Code-First Migrations)
+  - Authentication: Clerk SDK (@clerk/backend) for session JWT validation
+  - AI Engine: Google Gen AI SDK (@google/genai) consuming Gemini 1.5 Flash (free tier)
+
+  Architectural & Domain Constraints:
+  - Monorepo layout with apps/frontend/ and apps/backend/
+  - Shared Database, Shared Process (Single-Tenancy with Logical Isolation by line using UserId)
+  - Communications: REST APIs versioned via URL (e.g. /api/v1/controller), using lowercase plural resources, and camelCase JSON keys
+  - Input Restrictions: NO photo, camera, image processing or smart scanner logic. Food pantry input is 100% free text interpreted by Gemini.
+  - UI/Design Tokens: Clean & minimalist web app using Inter font, WCAG AA contrast, specific colors (slate-800 text, slate-50 background, [#ff6b6b] coral action-primary, [#ffd166] yellow action-secondary, emerald-500/red-500 alerts). No custom stylesheets; Tailwind utility classes inline only. Never apply flex/grid to the global body element.
+
+  Testing & Quality Guidelines:
+  - Strongly typed TypeScript is mandatory across frontend and backend. The 'any' type is strictly prohibited.
+  - Mandatory type checking using 'npx tsc --noEmit' in CI/CD pipelines (GitHub Actions) and local pre-commit checks.
+  - Strict input validation via Zod schemas in backend controllers. Frontend form validations must use Zod or Formik.
+  - Strict logical tenant isolation: Middlewares must validate the Clerk JWT, extract the UserId, and enforce it on all Prisma queries to prevent Insecure Direct Object References (IDOR).
+  - Observability: Use structured JSON console logs (e.g. Pino) in Node.js. Avoid verbose logs in production.
+
+# Per-artifact rules applied when generating spec-driven development documents
+rules:
+  proposal:
+    - 'Outline scope aligning with the phase roadmap: v1 (Auth/Profile/DB/Login/Profile screens), v2 (Pantry Dashboard/Gemini Parse), v3 (Recipe Generation/Macros/History).'
+    - Identify required database schema migrations (Prisma models) and environment variables.
+    - Detail exact Clerk authentication validation points and route security.
+    - Document rollback/fallback plans for risky serverless integrations.
+  specs:
+    - Write user-facing scenarios in Given/When/Then format.
+    - Define exact REST API endpoints with URL versioning (e.g. POST /api/v1/pantry/parse-text) and request/response payloads in camelCase.
+    - Enforce Zod validation schemas for all incoming API payloads and UI forms.
+    - Detail Gemini rate-limiting handling and user-facing error feedback (especially for free tier constraints).
+  design:
+    - Detail Prisma model changes, ensuring the Clerk UserId string/UUID column is defined for proper data isolation.
+    - Specify Tailwind UI components conforming to the design tokens (Inter font, active/hover/focus/disabled feedback states, semantic HTML5 elements).
+    - "Enforce complete type safety: verify that no 'any' types are used in the architectural layout."
+    - 'Detail Gemini API client configuration, specifying the use of responseMimeType: "application/json" or strict delimiters to ensure parseable JSON structures.'
+  tasks:
+    - Ensure every task list contains validation steps, including 'npx tsc --noEmit' type checking and unit test commands.
+    - Detail Prisma database migration steps (npx prisma migrate dev --name <name> and npx prisma generate) where relevant.
+    - Organize tasks clearly by monorepo path (apps/frontend/ vs apps/backend/).

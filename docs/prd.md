@@ -4,14 +4,14 @@
 
 **Problema:** O alto índice de desperdício de alimentos domésticos, aliado à frustração gerada por aplicativos de nutrição que exigem registros manuais complexos e sites de receitas que ignoram os ingredientes que o usuário já possui na despensa e suas restrições dietéticas.
 
-**Solução:** O **FazAI** é uma plataforma web (React SPA integrado a um ecossistema .NET) que utiliza Inteligência Artificial para interpretar listas de ingredientes digitadas livremente pelo usuário. O sistema sugere receitas personalizadas focadas no aproveitamento da despensa e automatiza o cálculo de macronutrientes e calorias de forma fluida e assíncrona.
+**Solução:** O **FazAI** é uma plataforma web que utiliza Inteligência Artificial para interpretar listas de ingredientes digitadas livremente pelo usuário. O sistema sugere receitas personalizadas focadas no aproveitamento da despensa e automatiza o cálculo de macronutrientes e calorias de forma fluida e assíncrona.
 
 Para o **público que cozinha em casa e possui metas ou restrições nutricionais**, os **ganhos** incluem a redução do desperdício, economia financeira, praticidade extrema ao eliminar o atrito do registro tradicional e o suporte efetivo a dietas personalizadas (ex: zero lactose, baixo açúcar, sem glúten).
 
 **Nossos Diferenciais:**
 - **Input Inteligente em Texto Livre:** A IA interpreta o que o usuário digitou naturalmente (ex: "3 ovos e um punhado de espinafre") e estrutura o inventário sem a necessidade de tabelas complexas.
 - **Geração Dinâmica de Receitas:** Diferente de bancos de dados estáticos, a IA cria a receita ideal combinando exatamente os ingredientes ativos do usuário com suas restrições de perfil.
-- **Stack Desacoplada e Simples:** Arquitetura limpa dividindo as responsabilidades de interface (React) e regras de negócio (.NET 8) utilizando persistência local leve para fácil portabilidade.
+- **Stack Desacoplada e Moderna:** Arquitetura limpa dividindo as responsabilidades de interface (React) e regras de negócio (Node.js em Serverless) utilizando a persistência em nuvem gerenciada do Supabase (PostgreSQL).
 
 ---
 
@@ -31,15 +31,14 @@ Para o **público que cozinha em casa e possui metas ou restrições nutricionai
 
 ### RFN-01 Entrada Inteligente e Inventário de Ingredientes
 - O usuário poderá digitar livremente os ingredientes e quantidades que possui em casa. O sistema usará IA para interpretar o texto e atualizar o inventário estruturado.
-- **Critérios de Aceitação:** 
-  - O sistema deve extrair com sucesso os ingredientes e quantidades de um texto livre via integração com o LLM.
+- **Critérios de Aceitação:** - O sistema deve extrair com sucesso os ingredientes e quantidades de um texto livre via integração com o LLM (Gemini).
   - O usuário deve poder excluir manualmente os itens gerados a partir de chips ou listas caso a interpretação falhe.
 
 ### RFN-02 Geração de Receitas Personalizadas via IA
 - O sistema enviará os ingredientes ativos do inventário e as restrições salvas do usuário para a IA, que gerará uma receita personalizada passo a passo.
 - **Critérios de Aceitação:**
   - As receitas geradas devem priorizar estritamente o uso dos ingredientes informados.
-  - As sugestões devem respeitar rigorosamente as restrições de saúde cadastradas no perfil.
+  - As sugestões devem respeitar rigorosamente as restrições de saúde cadastradas no perfil do usuário.
 
 ### RFN-03 Cálculo Automatizado de Macronutrientes e Calorias
 - O sistema exibirá os macronutrientes (carboidratos, proteínas, gorduras) e as calorias totais estimados para a receita gerada pela IA.
@@ -58,13 +57,13 @@ A interface com o usuário utilizará o **React com TypeScript**, garantindo car
 A arquitetura do front-end seguirá o padrão **SPA (Single Page Application)** com renderização **CSR (Client Side Rendering)**, comunicando-se assincronamente com o servidor por meio de payloads JSON.
 
 ### RNF-03 - Confiabilidade e Tipagem Estática
-Todo o ecossistema de código será construído com linguagens tipadas (**TypeScript** no frontend e **C#** no backend) para capturar erros antes da execução e garantir alta manutenibilidade do projeto de pós-graduação.
+Todo o ecossistema de código será construído estritamente em TypeScript (tanto no frontend quanto no backend) para garantir uniformidade na base de código, tipagem estática e alta manutenibilidade do projeto.
 
 ### RNF-04 - Backend Escalável e Leve
-O processamento de negócios, controle de inventário e orquestração de chamadas de IA serão centralizados em uma API RESTful monolítica desenvolvida em **ASP.NET Core (.NET 8)**.
+O processamento de negócios, controle de inventário e orquestração de chamadas de IA serão centralizados em uma API desenvolvida em Node.js com TypeScript, estruturada para rodar de forma nativa e scalável como Serverless Functions na Vercel.
 
 ### RNF-05 - Persistência Ágil de Dados
-O armazenamento local de usuários, perfis e históricos utilizará o banco de dados relacional **SQLite**, simplificando a infraestrutura ao eliminar a dependência de servidores pesados ativos durante a correção do projeto.
+O armazenamento de usuários, perfis e históricos utilizará o banco de dados relacional PostgreSQL, hospedado de forma gerenciada no Supabase, utilizando variáveis de ambiente seguras para comunicação.
 
 ---
 
@@ -78,11 +77,11 @@ O armazenamento local de usuários, perfis e históricos utilizará o banco de d
 
 ## Premissas e restrições
 
-- **Premissas:** Os usuários possuem dispositivos com acesso à internet estável para se comunicar com as APIs HTTP; A equipe possui conhecimento prático no ecossistema C#/.NET e bibliotecas React.
-- **Restrições:** O projeto utilizará a API do Google Gemini em sua camada gratuita, o que impõe limites estritos de requisições por minuto (Rate Limiting) que devem ser tratados de forma amigável na interface.
+- **Premissas:** Os usuários possuem dispositivos com acesso à internet estável para se comunicar com as APIs HTTP; A equipe possui conhecimento prático em Node.js, ecossistema TypeScript e bibliotecas React.
+- **Restrições:** O projeto utilizará a API do Google Gemini em sua camada gratuita, o que impõe limites estritos de requisições por minuto (Rate Limiting) que devem ser tratados de forma amigável na interface com mensagens de feedback de erro.
 
 ## Escopo
 
-- **v1:** Estrutura base da API em .NET 8 e SPA em React, persistência inicial via SQLite (Entity Framework Core), cadastro de perfil (metas/restrições), formulário de entrada manual simples e listagem local estática de receitas.
-- **v2:** Integração do backend com a API gratuita do Gemini para interpretação de texto livre (ingredientes), geração dinâmica de receitas personalizadas com macros estimados e ativação do design system em Tailwind CSS.
-- **v3:** Histórico nutricional diário consolidado no banco de dados, busca textual de receitas favoritadas e sistema básico de estatísticas de redução de desperdício.
+- **v1:** Configuração do Monorepo unificado, integração da autenticação nativa com o Clerk, criação do banco de dados no Supabase via Prisma ORM, estruturação das tabelas de perfil do usuário (metas/restrições) e desenvolvimento das primeiras telas (Login e Perfil).
+- **v2:** Implementação do Dashboard da Despensa Inteligente com o campo de texto livre, integração do backend Node.js com a API do Gemini para interpretar o inventário, exibição dos ingredientes estruturados e botões para exclusão pontual.
+- **v3:** Integração completa do motor de geração de receitas do Gemini respeitando as restrições do perfil, cálculo e exibição do painel de métricas nutricionais (macros e calorias), persistência do histórico de receitas favoritadas no banco de dados e tela de Histórico.

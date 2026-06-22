@@ -1,5 +1,6 @@
 # Dependências e Builds
-node_modules/
+node_modules
+test-results//
 dist/
 build/
 .vercel/
@@ -25,3 +26,4 @@ yarn-error.log*
 Thumbs.db
 .idea/
 
+.vercel
